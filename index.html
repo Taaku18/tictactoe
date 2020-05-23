@@ -76,6 +76,14 @@
         <div class="game-square"><button id="square-2-2" class="game-square-button" onclick="play_move(2, 2)"></button></div>
     </div>
     <p id="game-text">Good luck :)</p>
+    <div style="margin: 10px; display: inline-flex">
+        <label for="goesFirst" style="margin-right: 5px">Who goes first?</label>
+        <select id="goesFirst">
+            <option value="player">Player First</option>
+            <option value="computer">Computer First</option>
+            <option value="random">Random</option>
+        </select>
+    </div>
     <button id="retry-button" onclick="restart()">Restart</button>
 </div>
 

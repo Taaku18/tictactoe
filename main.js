@@ -93,6 +93,7 @@ class Game {
         }
         this.btnsRef = Object.values(this.btns);
         this.gameText = document.getElementById('game-text');
+        this.goesFirst = document.getElementById('goesFirst');
         this.board = new GameBoard(...this.gridSize);
         this.timeout = null;
         this.initialize();
@@ -106,6 +107,16 @@ class Game {
         }
         this.gameText.innerText = 'Good luck :)';
         this.board.createBoard();
+
+        let goesFirst = this.goesFirst.value;
+
+        if (goesFirst === 'random') {
+              goesFirst = ['player', 'computer'][Math.floor(Math.random() * 2)];
+        }
+
+        if (goesFirst=== 'computer') {
+            this.opponentMove();
+        }
     }
 
     isEnd(state) {
