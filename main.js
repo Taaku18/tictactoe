@@ -37,7 +37,6 @@ class GameBoard {
 			}
 		}
 		shuffle(valid);
-		console.log(valid);
 		return valid;
     }
 
