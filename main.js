@@ -1,6 +1,13 @@
 "use strict";
 
 const zip = rows=>rows[0].map((_,c)=>rows.map(row=>row[c]));
+const shuffle = (a) => {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+};
 
 
 class GameBoard {
@@ -29,6 +36,8 @@ class GameBoard {
 				}
 			}
 		}
+		shuffle(valid);
+		console.log(valid);
 		return valid;
     }
 
@@ -183,7 +192,6 @@ class Game {
         let result = this.isEnd(this.board);
         let winner = result[0];
         let end = result[1];
-        console.log(this.board);
         if (end) {
             if (winner === 1) {
                 console.log('You win!');
@@ -205,10 +213,8 @@ class Game {
         for (let btn of this.btnsRef)
             btn.disabled = true;
         let validInputs = this.validInputs(this.board);
-        console.log("player", [x, y]);
         let name = `${x}-${y}`;
         if (!validInputs.includes(name)) {
-            console.log('no');
             for (let btn of this.btnsRef)
                 btn.disabled = false;
             return;
@@ -222,7 +228,6 @@ class Game {
 
     opponentMove() {
         let move = this.minimax(this.board, this.depth)[0];
-        console.log("comp", move);
 
         this.board.set(move[0], move[1], 2);
         this.btns[`${move[0]}-${move[1]}`].innerHTML = '<i class="far fa-circle"></i>';
